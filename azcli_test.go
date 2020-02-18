@@ -22,7 +22,7 @@ func TestAzCliAuth(t *testing.T) {
 		os.Unsetenv("ARM_CLIENT_SECRET")
 		_, _, _, _, err := AzCliAuth()
 		if err == nil {
-			t.Errorf("got %v, expected %v", "nil", "ARM_CLIENT_SECRET not set")
+			t.Errorf("got %v, expected %v", "nil", "Env var ARM_CLIENT_SECRET not set")
 		}
 	})
 	t.Run("ARM_CLIENT_ID has not been set", func(t *testing.T) {
@@ -30,7 +30,7 @@ func TestAzCliAuth(t *testing.T) {
 		os.Unsetenv("ARM_CLIENT_ID")
 		_, _, _, _, err := AzCliAuth()
 		if err == nil {
-			t.Errorf("got %v, expected %v", "nil", "ARM_CLIENT_ID not set")
+			t.Errorf("got %v, expected %v", "nil", "Env var ARM_CLIENT_ID not set")
 		}
 	})
 	t.Run("ARM_TENANT_ID has not been set", func(t *testing.T) {
@@ -38,7 +38,7 @@ func TestAzCliAuth(t *testing.T) {
 		os.Unsetenv("ARM_TENANT_ID")
 		_, _, _, _, err := AzCliAuth()
 		if err == nil {
-			t.Errorf("got %v, expected %v", "nil", "ARM_TENANT_ID not set")
+			t.Errorf("got %v, expected %v", "nil", "Env var ARM_TENANT_ID not set")
 		}
 	})
 	t.Run("ARM_SUBSCRIPTION_ID has not been set", func(t *testing.T) {
