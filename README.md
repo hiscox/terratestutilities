@@ -1,6 +1,6 @@
 # terratestutilities
 
-A number of helper fucntions to be used in other go modules. For instance checking that appropriate environment variables have been set to authenticate through the Azure Cli.
+A number of helper functions to be used in other go modules. For instance checking that appropriate environment variables have been set to authenticate through the Azure Cli.
 
 We particulary use this alongside [Terratest](https://github.com/gruntwork-io/terratest) to control Azure Cli authentication and to set whether a terraform execution should do a plan, apply, destroy or all.
 
