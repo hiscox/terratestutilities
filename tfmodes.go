@@ -31,6 +31,9 @@ func TfModes() (d string, p string, a string, err error) {
 	apply = strings.ToLower(apply)
 
 	if (apply == "false" || apply == "true") && (destroy == "false" || destroy == "true") && (plan == "false" || plan == "true") {
+		if apply == "true" {
+			plan = "false" // no point planning if you're applying
+		}
 		return destroy, plan, apply, nil
 	}
 	return "", "", "", errors.New("TfModes environment variables are not syntactically correct. Only 'true' or 'false' will be accepted")
