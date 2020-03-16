@@ -36,7 +36,7 @@ func TfBackendArtifactory() (url string, user string, pwd string, repo string, s
 }
 
 // TfBackendArtifactoryGet downloads a file from Artifactory
-func TfBackendArtifactoryGet(url string, user string, pwd string, repo string, subpath string) {
+func TfBackendArtifactoryGet(url string, user string, pwd string, repo string, subpath string) (exists bool) {
 	// transport controls settings such as proxy and timeouts
 	tr := &http.Transport{
 		MaxIdleConns:       10,
@@ -77,6 +77,7 @@ func TfBackendArtifactoryGet(url string, user string, pwd string, repo string, s
 	}
 	defer out.Close()
 	io.Copy(out, resp.Body)
+	return true
 	// ! write some tests for this stuff!!
 }
 
