@@ -15,8 +15,8 @@ func TfStateEncrypt() {
 		log.Fatal("Env var ENCRYPTION_SECRET has not been defined")
 	}
 
-	c := "/bin/bash"
-	args := []string{"terrahelp", "encrypt",
+	c := "/usr/local/bin/terrahelp"
+	args := []string{"encrypt",
 		"-simple-key=", es,
 		"-file=", "../terraform.tfstate"}
 
@@ -44,8 +44,8 @@ func TfStateDecrypt() {
 		return
 	}
 
-	c := "/bin/bash"
-	args := []string{"terrahelp", "decrypt",
+	c := "/usr/local/bin/terrahelp"
+	args := []string{"decrypt",
 		"-simple-key=", es,
 		"-file=", "../terraform.tfstate"}
 
