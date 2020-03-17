@@ -28,6 +28,7 @@ func TfStateEncrypt() {
 		log.Printf("Unable encrypt state file")
 		log.Fatal(err)
 	}
+	// ! write some tests for this stuff!!
 }
 
 // TfStateDecrypt calls the terrahelp binary for decrypting a statefile with AES
@@ -57,4 +58,5 @@ func TfStateDecrypt() {
 		log.Fatal(err)
 	}
 	return
+	// ! write some tests for this stuff!!
 }
