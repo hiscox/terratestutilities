@@ -17,8 +17,8 @@ func TfStateEncrypt() {
 
 	c := "/usr/local/bin/terrahelp"
 	args := []string{"encrypt",
-		"-simple-key=", es,
-		"-file=", "../terraform.tfstate"}
+		"-simple-key", es,
+		"-file=../terraform.tfstate"}
 
 	cmd := exec.Command(c, args...)
 	cmd.Stdout = os.Stdout
@@ -46,8 +46,8 @@ func TfStateDecrypt() {
 
 	c := "/usr/local/bin/terrahelp"
 	args := []string{"decrypt",
-		"-simple-key=", es,
-		"-file=", "../terraform.tfstate"}
+		"-simple-key", es,
+		"-file=../terraform.tfstate"}
 
 	cmd := exec.Command(c, args...)
 	cmd.Stdout = os.Stdout
