@@ -68,6 +68,7 @@ func TfBackendArtifactoryGet(url string, user string, pwd string, repo string, s
 	case 401:
 		log.Fatal("Unauthorised, please check your credentials and/or endpoint")
 	default:
+		log.Printf(string(resp.StatusCode))
 		log.Fatal("Unhandled failure")
 	}
 	defer resp.Body.Close() // even if later methods return err, run Close() at the end
@@ -119,7 +120,7 @@ func TfBackendArtifactoryPost(url string, user string, pwd string, repo string, 
 	case 401:
 		log.Fatal("Unauthorised, please check your credentials and/or endpoint")
 	default:
-		log.Printf(resp.StatusCode)
+		log.Printf(string(resp.StatusCode))
 		log.Fatal("Unhandled failure")
 	}
 	// ! write some tests for this stuff!!
