@@ -103,12 +103,12 @@ func TfBackendArtifactoryPost(url string, user string, pwd string, repo string, 
 		log.Fatal(err)
 	}
 	defer data.Close()
-	req, err := http.NewRequest("POST", url+"/"+repo+"/"+subpath+"/terraform.tfstate", data)
+	req, err := http.NewRequest("PUT", url+"/"+repo+"/"+subpath+"/terraform.tfstate", data)
 	if err != nil {
 		log.Fatal(err)
 	}
 	req.SetBasicAuth(user, pwd)
-	//req.Header.Set("Content-Type", "application/json")
+	req.Header.Set("Content-Type", "multipart/form-data")
 	resp, err := client.Do(req)
 	if err != nil {
 		log.Fatal(err)
