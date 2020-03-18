@@ -123,6 +123,7 @@ func TfBackendArtifactoryPost(url string, user string, pwd string, repo string, 
 		log.Fatal("Unauthorised, please check your credentials and/or endpoint")
 	default:
 		log.Printf(string(resp.StatusCode))
+		log.Printf(resp)
 		log.Fatal("Unhandled failure")
 	}
 	// ! write some tests for this stuff!!
