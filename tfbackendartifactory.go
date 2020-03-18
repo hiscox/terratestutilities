@@ -60,9 +60,18 @@ func TfBackendArtifactoryGet(url string, user string, pwd string, repo string, s
 	switch resp.StatusCode {
 	case 200:
 		log.Printf("State file found at " + url + "/" + repo + "/" + subpath)
+		defer resp.Body.Close() // even if later methods return err, run Close() at the end
+		out, err := os.Create("../terraform.tfstate")
+		if err != nil {
+			log.Fatal(err)
+		}
+		defer out.Close()
+		io.Copy(out, resp.Body)
+		return true
 	case 404:
 		log.Printf("WARNING: 404. Either no state file exists or you repo/subpath are incorrect!")
 		log.Printf("Carrying on as if this is the first time terraform has been run")
+		return true
 	case 403:
 		log.Fatal("Forbidden, check your proxy/networking?")
 	case 401:
@@ -71,14 +80,7 @@ func TfBackendArtifactoryGet(url string, user string, pwd string, repo string, s
 		log.Printf(string(resp.StatusCode))
 		log.Fatal("Unhandled failure")
 	}
-	defer resp.Body.Close() // even if later methods return err, run Close() at the end
-	out, err := os.Create("../terraform.tfstate")
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer out.Close()
-	io.Copy(out, resp.Body)
-	return true
+
 	// ! write some tests for this stuff!!
 }
 
