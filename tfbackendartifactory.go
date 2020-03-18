@@ -80,7 +80,7 @@ func TfBackendArtifactoryGet(url string, user string, pwd string, repo string, s
 		log.Printf(string(resp.StatusCode))
 		log.Fatal("Unhandled failure")
 	}
-
+	return false
 	// ! write some tests for this stuff!!
 }
 
