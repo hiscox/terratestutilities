@@ -3,6 +3,7 @@ package util
 import (
 	"errors"
 	"io"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
@@ -112,6 +113,7 @@ func TfBackendArtifactoryPost(url string, user string, pwd string, repo string, 
 	if err != nil {
 		log.Fatal(err)
 	}
+	bodyBytes, err := ioutil.ReadAll(resp.Body)
 	switch resp.StatusCode {
 	case 200:
 		log.Printf("State replaced at " + url + "/" + repo + "/" + subpath)
@@ -123,7 +125,7 @@ func TfBackendArtifactoryPost(url string, user string, pwd string, repo string, 
 		log.Fatal("Unauthorised, please check your credentials and/or endpoint")
 	default:
 		log.Printf(string(resp.StatusCode))
-		log.Printf(resp)
+		log.Printf(string(bodyBytes))
 		log.Fatal("Unhandled failure")
 	}
 	// ! write some tests for this stuff!!
